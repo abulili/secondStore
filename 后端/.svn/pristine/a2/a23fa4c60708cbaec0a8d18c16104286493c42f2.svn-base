@@ -1,0 +1,9 @@
+package com.atguigu.mybatis_plus_demo.service;
+
+import com.atguigu.mybatis_plus_demo.entity.Car;
+import com.atguigu.mybatis_plus_demo.entity.Chat;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+public interface ChatService extends IService<Chat> {
+    int updateNew(Chat data);
+}

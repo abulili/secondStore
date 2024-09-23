@@ -1,0 +1,56 @@
+package com.atguigu.mybatis_plus_demo.controller;
+
+import com.atguigu.mybatis_plus_demo.entity.Comment;
+import com.atguigu.mybatis_plus_demo.entity.Report;
+import com.atguigu.mybatis_plus_demo.mapper.ReportMapper;
+import com.atguigu.mybatis_plus_demo.mapper.StarMapper;
+import com.atguigu.mybatis_plus_demo.service.ReportService;
+import com.atguigu.mybatis_plus_demo.service.StarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.List;
+
+@RestController
+@RequestMapping("/reports")
+public class ReportController {
+    @Autowired
+    private ReportService reportService;
+    @Resource
+    private ReportMapper reportMapper;
+//    查
+    @PostMapping("/list")
+    @ResponseBody
+    public List<Report> getList() {
+        List<Report> reports = reportMapper.selectList(null);
+        return reports;
+    }
+    //    增
+    @PostMapping("/add")
+    @ResponseBody
+    public int add(@RequestBody Report data) {
+        System.out.println(data);
+        Report rt = new Report();
+        rt.setIsdeal('0');
+//        前端一定要置null
+        rt.setSid(data.getSid());
+        rt.setCid(data.getCid());
+        int result = reportMapper.insert(rt);
+        return result;
+    }
+//    删
+    @PostMapping("/del")
+    @ResponseBody
+    public int del(@RequestBody Report data) {
+        System.out.println(data);
+        Report rt = new Report();
+        rt.setRid(data.getRid());
+        rt.setIsdeal('1');
+        rt.setSid(data.getSid());
+        rt.setCid(data.getCid());
+        int result = reportMapper.updateById(rt);
+        return result;
+    }
+}

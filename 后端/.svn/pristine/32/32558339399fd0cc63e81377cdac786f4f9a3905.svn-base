@@ -1,0 +1,34 @@
+package com.atguigu.mybatis_plus_demo.controller;
+
+import com.atguigu.mybatis_plus_demo.entity.Car;
+import com.atguigu.mybatis_plus_demo.mapper.CarMapper;
+import com.atguigu.mybatis_plus_demo.service.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@RestController
+@RequestMapping("/car")
+public class CarController{
+    @Autowired
+    private CarService carService;
+    @Resource
+    private CarMapper carMapper;
+    @GetMapping("/list")
+    @ResponseBody
+    public List<Car> index() {
+        return carService.list();
+    }
+
+    @PostMapping("/listId")
+    @ResponseBody
+    public Car getid(@RequestBody Car car) {
+//        System.out.println(car.getUid());
+        return carService.getById(car.getUid());
+//        return null;
+    }
+
+}

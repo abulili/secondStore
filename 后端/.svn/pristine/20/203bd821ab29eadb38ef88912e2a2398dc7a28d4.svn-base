@@ -1,0 +1,81 @@
+package com.atguigu.mybatis_plus_demo;
+
+import com.atguigu.mybatis_plus_demo.entity.Car;
+import com.atguigu.mybatis_plus_demo.mapper.CarMapper;
+import com.atguigu.mybatis_plus_demo.service.CarService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.annotation.Resource;
+
+@SpringBootTest
+public class testa {
+    @Resource
+    private CarMapper carMapper;
+    @Autowired
+    private CarService carService;
+    @Test
+    void testDB() {
+        /**
+         * https://www.oz6.cn/articles/55
+         * ok
+         */
+//        List<Car> cars = carMapper.selectList(null);
+//        cars.forEach(System.out::println);
+        /**
+         * ok
+         */
+//        Car car = new Car();
+//        car.setIsDelete('0');
+//        car.setSid(1);
+//        car.setSNum(1);
+//        int result = carMapper.insert(car);
+//        System.out.println(result > 0 ? "添加成功！" : "添加失败！");
+        /**
+         * ok
+         */
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("uid",1);
+//        int result = carMapper.deleteByMap(map);
+
+        /**
+         * ok  但是主键名最好重新弄为
+         * Long id,这里已经改了数据库的名字
+         */
+//        Car car = new Car();
+//        car.setSid(1);
+//        car.setUid(1);
+//        car.setSNum(1);
+//        car.setIsDelete('0');
+//        int res = carMapper.updateById(car);
+        /**
+         * ok
+         */
+//        Car car = carMapper.selectById(1);
+//        System.out.println(car);
+        /**
+         * ok 我也不知道改了什么，能用了
+         */
+//        long count = carService.count();
+//        System.out.println("总记录数：" + count);
+
+        /**
+         * ok 必须手动指定主键值 查了数量之后接着就行了
+         */
+//        List<Car> list = new ArrayList<>();
+//        for (int i = 3; i <= 10; i++) {
+//            Car car = new Car();
+//            car.setSNum(1);
+//            car.setIsDelete('0');
+//            car.setSid(2);
+//            list.add(car);
+//        }
+//        boolean b = carService.saveBatch(list);
+//        System.out.println(b ? "添加成功！" : "添加失败！");
+
+        Car car = carService.getById(1);
+        System.out.println(car);
+    }
+
+}
